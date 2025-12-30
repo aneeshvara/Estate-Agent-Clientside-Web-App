@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import data from "./data/properties.json";
 
 const properties = data.properties;
 
