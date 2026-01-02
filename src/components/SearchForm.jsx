@@ -1,11 +1,13 @@
 import '../styles/index.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 /**
  * SearchForm Component - Controlled form for property search
  * All inputs are controlled by React state for predictable data flow
+ * 
+ * @param {Function} onSearch - Callback function called when search criteria change
  */
-function SearchForm() {
+function SearchForm({ onSearch }) {
   // Controlled state for each form input
   const [propertyType, setPropertyType] = useState('');
   const [minPrice, setMinPrice] = useState(0);
@@ -14,6 +16,32 @@ function SearchForm() {
   const [maxBedrooms, setMaxBedrooms] = useState(5);
   const [dateAdded, setDateAdded] = useState('');
   const [postcodeArea, setPostcodeArea] = useState('');
+  
+  /**
+   * Effect to trigger search whenever any criteria changes
+   * This creates reactive filtering - results update immediately as user types/changes inputs
+   * 
+   * Alternative approach: Could use a "Search" button and only filter on submit
+   * Current approach provides instant feedback which is better UX for this use case
+   */
+  useEffect(() => {
+    // Only call onSearch if the prop is provided
+    if (onSearch) {
+      // Build criteria object from current state
+      const criteria = {
+        propertyType,
+        minPrice,
+        maxPrice,
+        minBedrooms,
+        maxBedrooms,
+        dateAdded,
+        postcodeArea
+      };
+      
+      // Call parent's search handler
+      onSearch(criteria);
+    }
+  }, [propertyType, minPrice, maxPrice, minBedrooms, maxBedrooms, dateAdded, postcodeArea, onSearch]);
 
   return (
     <div className="search-form">
