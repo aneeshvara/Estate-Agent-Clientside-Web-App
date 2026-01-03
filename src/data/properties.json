@@ -34,130 +34,130 @@
         },
 		{
             "id":"prop3",
-			"type":"Flat",
-            "bedrooms":2,
-			"price":399995,
-			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"type":"Apartment",
+            "bedrooms":1,
+			"price":285000,
+			"tenure":"Leasehold",
+			"description":"Modern one bedroom apartment located in the heart of Bromley town center. This stylish property features an open-plan living area with contemporary kitchen, spacious bedroom with built-in wardrobes, and a modern bathroom suite. The apartment includes secure entry system, allocated parking, and communal gardens. Perfectly positioned within walking distance to Bromley South station, shops, restaurants, and local amenities. Ideal for first-time buyers or investors.",
+			"location":"High Street, Bromley BR1",
+			"picture":"images/prop3pic1small.jpg",
+			"url":"properties/prop3.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"November",
+                "day":5,
+                "year":2025
             }
         },
 		{
             "id":"prop4",
-			"type":"Flat",
-            "bedrooms":2,
-			"price":399995,
+			"type":"House",
+            "bedrooms":4,
+			"price":895000,
 			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"description":"Stunning four bedroom detached family home set in a desirable residential area. This impressive property offers spacious accommodation including entrance hall, living room with feature fireplace, separate dining room, modern fitted kitchen with breakfast area, utility room, and ground floor cloakroom. Upstairs features four good-sized bedrooms (master with en-suite), and family bathroom. Benefits include double glazing, gas central heating, garage, driveway parking, and beautifully landscaped rear garden. Close to excellent schools and transport links.",
+			"location":"Hayes Lane, Bromley BR2",
+			"picture":"images/prop4pic1small.jpg",
+			"url":"properties/prop4.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"December",
+                "day":20,
+                "year":2025
             }
         },
 		{
             "id":"prop5",
-			"type":"Flat",
+			"type":"Condo",
             "bedrooms":2,
-			"price":399995,
-			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"price":425000,
+			"tenure":"Leasehold",
+			"description":"Luxurious two bedroom condo in a prestigious development with concierge service. This elegant property features a large open-plan living/dining area with floor-to-ceiling windows offering stunning views, high-spec kitchen with integrated appliances, two double bedrooms (master with en-suite and fitted wardrobes), and a contemporary family bathroom. Additional benefits include secure underground parking, residents' gymnasium, communal roof terrace, and 24-hour concierge. Located minutes from Chislehurst station with excellent transport connections to London.",
+			"location":"Manor Park Road, Chislehurst BR7",
+			"picture":"images/prop5pic1small.jpg",
+			"url":"properties/prop5.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"October",
+                "day":28,
+                "year":2025
             }
         },
 		{
             "id":"prop6",
-			"type":"Flat",
-            "bedrooms":2,
-			"price":399995,
-			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"type":"Apartment",
+            "bedrooms":3,
+			"price":520000,
+			"tenure":"Leasehold",
+			"description":"Spacious three bedroom apartment situated in a sought-after location. This well-presented property comprises a bright reception room with balcony access, modern fitted kitchen with dining area, three generous bedrooms, master with en-suite shower room, and family bathroom. The property benefits from gas central heating, double glazing, video entry system, lift access, and a single garage. Communal gardens are well maintained. Conveniently located near local shops, schools, and mainline station with direct services to central London.",
+			"location":"Station Approach, West Wickham BR4",
+			"picture":"images/prop6pic1small.jpg",
+			"url":"properties/prop6.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"August",
+                "day":16,
+                "year":2025
             }
         },
 		{
             "id":"prop7",
-			"type":"Flat",
+			"type":"House",
             "bedrooms":2,
-			"price":399995,
+			"price":475000,
 			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"description":"Charming two bedroom terraced cottage in a quiet residential street. This delightful property features a cozy living room with open fireplace, fitted kitchen/breakfast room with access to rear garden, two well-proportioned bedrooms, and a modern bathroom suite. The property has been tastefully updated while retaining original character features including exposed beams and period fireplace. Benefits include a private rear garden, off-street parking, and gas central heating. Within walking distance to Penge East station and local amenities.",
+			"location":"Alexandra Road, Penge SE20",
+			"picture":"images/prop7pic1small.jpg",
+			"url":"properties/prop7.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"December",
+                "day":3,
+                "year":2025
             }
         },
 		{
             "id":"prop8",
-			"type":"Flat",
-            "bedrooms":2,
-			"price":399995,
-			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"type":"Condo",
+            "bedrooms":1,
+			"price":315000,
+			"tenure":"Leasehold",
+			"description":"Contemporary one bedroom condo in a sought-after riverside development. This modern property offers open-plan living/kitchen area with integrated appliances and Juliet balcony overlooking landscaped gardens, spacious bedroom with built-in storage, and stylish bathroom with shower. The development features secure gated entry, residents' lounge, cycle storage, and is within minutes of Bickley station. Perfect for professionals seeking easy access to London or first-time buyers. Chain free sale.",
+			"location":"Riverside Gardens, Bickley BR1",
+			"picture":"images/prop8pic1small.jpg",
+			"url":"properties/prop8.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"November",
+                "day":22,
+                "year":2025
             }
         },
 		{
             "id":"prop9",
-			"type":"Flat",
-            "bedrooms":2,
-			"price":399995,
+			"type":"House",
+            "bedrooms":5,
+			"price":1250000,
 			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"description":"Exceptional five bedroom executive detached house in a prime location. This outstanding family home offers versatile accommodation over three floors including grand entrance hall, two reception rooms, study, luxury fitted kitchen/family room with bi-fold doors to garden, utility room, and guest cloakroom. First floor: master suite with dressing area and en-suite, three further bedrooms, and family bathroom. Second floor: fifth bedroom/games room and shower room. Features include underfloor heating, integrated sound system, landscaped gardens, double garage, and electric gates. Situated in a prestigious area near top-rated schools.",
+			"location":"Chatterton Road, Bromley BR2",
+			"picture":"images/prop9pic1small.jpg",
+			"url":"properties/prop9.html",
             "added": {
-                "month":"September",
-                "day":14,
-                "year":2022
+                "month":"January",
+                "day":2,
+                "year":2026
             }
         },
 		{
             "id":"prop10",
-			"type":"Flat",
+			"type":"Apartment",
             "bedrooms":2,
-			"price":399995,
-			"tenure":"Freehold",
-			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
-			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
-			"url":"properties/prop2.html",
+			"price":365000,
+			"tenure":"Leasehold",
+			"description":"Well-presented two bedroom apartment on the third floor of a popular development. This light and airy property comprises entrance hall, spacious lounge/dining room with laminate flooring, modern fitted kitchen, two double bedrooms with built-in wardrobes, and contemporary bathroom suite. The property benefits from double glazing, gas central heating, secure entry phone system, lift access, and allocated parking space. Communal gardens are well maintained. Conveniently located for Shortlands station, local shops, and schools. No onward chain.",
+			"location":"Glebe Way, Shortlands BR2",
+			"picture":"images/prop10pic1small.jpg",
+			"url":"properties/prop10.html",
             "added": {
                 "month":"September",
-                "day":14,
-                "year":2022
+                "day":8,
+                "year":2025
             }
         }
 
