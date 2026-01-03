@@ -1,3 +1,93 @@
+PROJECT STRUCTURE
+=================
+
+├── .gitignore
+├── eslint.config.js
+├── export-project.cjs
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+├── README.md
+├── src
+│   ├── App.jsx
+│   ├── assets
+│   ├── components
+│   │   ├── PropertyCard.jsx
+│   │   ├── PropertyDetail.jsx
+│   │   ├── PropertyResults.jsx
+│   │   └── SearchForm.jsx
+│   ├── data
+│   │   └── properties.json
+│   ├── main.jsx
+│   └── styles
+│       ├── App.css
+│       └── index.css
+└── vite.config.js
+
+
+SOURCE CODE FILES
+=================
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\eslint.config.js
+========================================
+
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
+])
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\index.html
+========================================
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>estate-agent-client-side-web-app</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\package-lock.json
+========================================
+
 {
   "name": "estate-agent-client-side-web-app",
   "version": "0.0.0",
@@ -2928,3 +3018,875 @@
     }
   }
 }
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\package.json
+========================================
+
+{
+  "name": "estate-agent-client-side-web-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.11.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "vite": "^7.2.4"
+  }
+}
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\README.md
+========================================
+
+### Estate Agent Client-side Web App
+
+Advanced Client-side Development Coursework
+
+Author: Sureshkumar Aneeshvara
+Student ID: W2120147 / 20240883
+
+## Tech Stack
+- React
+- Vite
+- JavaScript
+- HTML5 / CSS3
+
+## Getting Started
+
+To run the project locally:
+
+```bash
+npm install
+npm run dev
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\App.jsx
+========================================
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './styles/App.css';
+import propertiesData from './data/properties.json';
+import SearchForm from './components/SearchForm';
+import PropertyDetail from './components/PropertyDetail';
+
+function App() {
+  const allProperties = propertiesData.properties;
+
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <h1>Property Search</h1>
+        
+        <Routes>
+          <Route path="/" element={<SearchForm properties={allProperties} />} />
+          <Route path="/property/:id" element={<PropertyDetail />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\components\PropertyCard.jsx
+========================================
+
+import { Link } from 'react-router-dom';
+import '../styles/index.css';
+
+function PropertyCard({ property }) {
+  // Clean description: remove HTML tags and truncate
+  const shortDescription = property.description.substring(0, 150).replace(/<[^>]*>/g, '');
+
+  return (
+    <Link to={`/property/${property.id}`} className="property-card-link">
+      <div className="property-card">
+        <div className="property-image">
+          <img 
+            src={property.picture} 
+            alt={property.type}
+            onError={(e) => e.target.src = 'https://via.placeholder.com/300x200?text=Property'}
+          />
+          <span className="property-type-badge">{property.type}</span>
+        </div>
+        
+        <div className="property-details">
+          <h3 className="property-price">£{property.price.toLocaleString()}</h3>
+          <p className="property-location">📍 {property.location}</p>
+          
+          <div className="property-info">
+            <span>🛏️ {property.bedrooms} Bedrooms</span>
+            <span>📄 {property.tenure}</span>
+          </div>
+          
+          <p className="property-description">{shortDescription}...</p>
+          
+          <p className="property-date">
+            Added: {property.added.month} {property.added.day}, {property.added.year}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export default PropertyCard;
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\components\PropertyDetail.jsx
+========================================
+
+import { useParams, Link } from 'react-router-dom';
+import propertiesData from '../data/properties.json';
+import '../styles/index.css';
+
+function PropertyDetail() {
+  const { id } = useParams();
+  const property = propertiesData.properties.find(p => p.id === id);
+
+  if (!property) {
+    return (
+      <div className="property-detail">
+        <h2>Property not found</h2>
+        <Link to="/">Back to Search</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="property-detail">
+      <Link to="/" className="back-link">← Back to Search</Link>
+      
+      <div className="detail-content">
+        <div className="detail-image">
+          <img 
+            src={`/${property.picture}`} 
+            alt={property.type}
+            onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Property'}
+          />
+          <span className="detail-badge">{property.type}</span>
+        </div>
+
+        <div className="detail-info">
+          <h1 className="detail-price">£{property.price.toLocaleString()}</h1>
+          <p className="detail-location">📍 {property.location}</p>
+
+          <div className="detail-features">
+            <div className="feature">
+              <strong>Bedrooms:</strong> {property.bedrooms}
+            </div>
+            <div className="feature">
+              <strong>Tenure:</strong> {property.tenure}
+            </div>
+            <div className="feature">
+              <strong>Added:</strong> {property.added.month} {property.added.day}, {property.added.year}
+            </div>
+          </div>
+
+          <div className="detail-description">
+            <h2>Description</h2>
+            <p dangerouslySetInnerHTML={{ __html: property.description.replace(/<br>/g, '<br/><br/>') }}></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PropertyDetail;
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\components\PropertyResults.jsx
+========================================
+
+import PropertyCard from './PropertyCard';
+import '../styles/index.css';
+
+function PropertyResults({ properties, criteria }) {
+  // Filter properties based on search criteria passed from SearchForm
+  const filteredProperties = properties.filter(property => {
+    // Check property type
+    if (criteria.propertyType && property.type !== criteria.propertyType) {
+      return false;
+    }
+    
+    // Check price range
+    if (criteria.priceRange) {
+      if (criteria.priceRange === '1000000+') {
+        if (property.price < 1000000) return false;
+      } else {
+        const [min, max] = criteria.priceRange.split('-').map(Number);
+        if (property.price < min || property.price > max) return false;
+      }
+    }
+    
+    // Check bedrooms
+    if (criteria.bedrooms) {
+      const bedroomValue = criteria.bedrooms;
+      if (bedroomValue === '5') {
+        // 5+ bedrooms
+        if (property.bedrooms < 5) return false;
+      } else {
+        if (property.bedrooms !== parseInt(bedroomValue)) return false;
+      }
+    }
+    
+    // Check postcode area
+    if (criteria.postcodeArea && !property.location.toLowerCase().includes(criteria.postcodeArea.toLowerCase())) {
+      return false;
+    }
+    
+    return true;
+  });
+
+  return (
+    <div className="property-results">
+      <div className="results-header">
+        <h2>Property Listings</h2>
+        <p>Showing {filteredProperties.length} of {properties.length} properties</p>
+      </div>
+
+      {filteredProperties.length === 0 ? (
+        <div className="no-results">
+          <h3>No properties found</h3>
+          <p>Try adjusting your search criteria.</p>
+        </div>
+      ) : (
+        <div className="property-grid">
+          {filteredProperties.map((property) => (
+            <PropertyCard key={property.id} property={property} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default PropertyResults;
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\components\SearchForm.jsx
+========================================
+
+import { useState } from 'react';
+import PropertyResults from './PropertyResults';
+import '../styles/index.css';
+
+function SearchForm({ properties }) {
+  // Form input states
+  const [propertyType, setPropertyType] = useState('');
+  const [priceRange, setPriceRange] = useState('');
+  const [bedrooms, setBedrooms] = useState('');
+  const [postcodeArea, setPostcodeArea] = useState('');
+
+  // Build search criteria object to pass to PropertyResults
+  const searchCriteria = {
+    propertyType,
+    priceRange,
+    bedrooms,
+    postcodeArea
+  };
+
+  return (
+    <>
+      <div className="search-form">
+        <h2>Search Properties</h2>
+        
+        <div className="form-group">
+          <label>Property Type:</label>
+          <select value={propertyType} onChange={(e) => setPropertyType(e.target.value)}>
+            <option value="">All Types</option>
+            <option value="House">House</option>
+            <option value="Flat">Flat</option>
+            <option value="Bungalow">Bungalow</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Price Range:</label>
+          <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
+            <option value="">Any Price</option>
+            <option value="0-250000">Under £250,000</option>
+            <option value="250000-500000">£250,000 - £500,000</option>
+            <option value="500000-750000">£500,000 - £750,000</option>
+            <option value="750000-1000000">£750,000 - £1,000,000</option>
+            <option value="1000000+">Over £1,000,000</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Bedrooms:</label>
+          <select value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}>
+            <option value="">Any</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5+</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Postcode Area:</label>
+          <input
+            type="text"
+            placeholder="e.g., BR5, BR6"
+            value={postcodeArea}
+            onChange={(e) => setPostcodeArea(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* Pass properties and search criteria to PropertyResults */}
+      <PropertyResults properties={properties} criteria={searchCriteria} />
+    </>
+  );
+}
+
+export default SearchForm;
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\data\properties.json
+========================================
+
+{
+	"properties": [
+        {
+            "id":"prop1",
+			"type":"House",
+            "bedrooms":3,
+			"price":750000,
+			"tenure":"Freehold",
+			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
+			"picture":"images/prop1pic1small.jpg",
+			"url":"properties/prop1.html",
+            "added": {
+                "month":"October",
+                "day":12,
+                "year":2022
+            }
+        },
+		{
+            "id":"prop2",
+			"type":"Flat",
+            "bedrooms":2,
+			"price":399995,
+			"tenure":"Freehold",
+			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
+			"location":"Crofton Road Orpington BR6",
+			"picture":"images/prop2pic1small.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"September",
+                "day":14,
+                "year":2022
+            }
+        },
+		{
+            "id":"prop3",
+			"type":"Apartment",
+            "bedrooms":1,
+			"price":285000,
+			"tenure":"Leasehold",
+			"description":"Modern one bedroom apartment located in the heart of Bromley town center. This stylish property features an open-plan living area with contemporary kitchen, spacious bedroom with built-in wardrobes, and a modern bathroom suite. The apartment includes secure entry system, allocated parking, and communal gardens. Perfectly positioned within walking distance to Bromley South station, shops, restaurants, and local amenities. Ideal for first-time buyers or investors.",
+			"location":"High Street, Bromley BR1",
+			"picture":"images/prop3pic1small.jpg",
+			"url":"properties/prop3.html",
+            "added": {
+                "month":"November",
+                "day":5,
+                "year":2025
+            }
+        },
+		{
+            "id":"prop4",
+			"type":"House",
+            "bedrooms":4,
+			"price":895000,
+			"tenure":"Freehold",
+			"description":"Stunning four bedroom detached family home set in a desirable residential area. This impressive property offers spacious accommodation including entrance hall, living room with feature fireplace, separate dining room, modern fitted kitchen with breakfast area, utility room, and ground floor cloakroom. Upstairs features four good-sized bedrooms (master with en-suite), and family bathroom. Benefits include double glazing, gas central heating, garage, driveway parking, and beautifully landscaped rear garden. Close to excellent schools and transport links.",
+			"location":"Hayes Lane, Bromley BR2",
+			"picture":"images/prop4pic1small.jpg",
+			"url":"properties/prop4.html",
+            "added": {
+                "month":"December",
+                "day":20,
+                "year":2025
+            }
+        },
+		{
+            "id":"prop5",
+			"type":"Condo",
+            "bedrooms":2,
+			"price":425000,
+			"tenure":"Leasehold",
+			"description":"Luxurious two bedroom condo in a prestigious development with concierge service. This elegant property features a large open-plan living/dining area with floor-to-ceiling windows offering stunning views, high-spec kitchen with integrated appliances, two double bedrooms (master with en-suite and fitted wardrobes), and a contemporary family bathroom. Additional benefits include secure underground parking, residents' gymnasium, communal roof terrace, and 24-hour concierge. Located minutes from Chislehurst station with excellent transport connections to London.",
+			"location":"Manor Park Road, Chislehurst BR7",
+			"picture":"images/prop5pic1small.jpg",
+			"url":"properties/prop5.html",
+            "added": {
+                "month":"October",
+                "day":28,
+                "year":2025
+            }
+        },
+		{
+            "id":"prop6",
+			"type":"Apartment",
+            "bedrooms":3,
+			"price":520000,
+			"tenure":"Leasehold",
+			"description":"Spacious three bedroom apartment situated in a sought-after location. This well-presented property comprises a bright reception room with balcony access, modern fitted kitchen with dining area, three generous bedrooms, master with en-suite shower room, and family bathroom. The property benefits from gas central heating, double glazing, video entry system, lift access, and a single garage. Communal gardens are well maintained. Conveniently located near local shops, schools, and mainline station with direct services to central London.",
+			"location":"Station Approach, West Wickham BR4",
+			"picture":"images/prop6pic1small.jpg",
+			"url":"properties/prop6.html",
+            "added": {
+                "month":"August",
+                "day":16,
+                "year":2025
+            }
+        },
+		{
+            "id":"prop7",
+			"type":"House",
+            "bedrooms":2,
+			"price":475000,
+			"tenure":"Freehold",
+			"description":"Charming two bedroom terraced cottage in a quiet residential street. This delightful property features a cozy living room with open fireplace, fitted kitchen/breakfast room with access to rear garden, two well-proportioned bedrooms, and a modern bathroom suite. The property has been tastefully updated while retaining original character features including exposed beams and period fireplace. Benefits include a private rear garden, off-street parking, and gas central heating. Within walking distance to Penge East station and local amenities.",
+			"location":"Alexandra Road, Penge SE20",
+			"picture":"images/prop7pic1small.jpg",
+			"url":"properties/prop7.html",
+            "added": {
+                "month":"December",
+                "day":3,
+                "year":2025
+            }
+        },
+		{
+            "id":"prop8",
+			"type":"Condo",
+            "bedrooms":1,
+			"price":315000,
+			"tenure":"Leasehold",
+			"description":"Contemporary one bedroom condo in a sought-after riverside development. This modern property offers open-plan living/kitchen area with integrated appliances and Juliet balcony overlooking landscaped gardens, spacious bedroom with built-in storage, and stylish bathroom with shower. The development features secure gated entry, residents' lounge, cycle storage, and is within minutes of Bickley station. Perfect for professionals seeking easy access to London or first-time buyers. Chain free sale.",
+			"location":"Riverside Gardens, Bickley BR1",
+			"picture":"images/prop8pic1small.jpg",
+			"url":"properties/prop8.html",
+            "added": {
+                "month":"November",
+                "day":22,
+                "year":2025
+            }
+        },
+		{
+            "id":"prop9",
+			"type":"House",
+            "bedrooms":5,
+			"price":1250000,
+			"tenure":"Freehold",
+			"description":"Exceptional five bedroom executive detached house in a prime location. This outstanding family home offers versatile accommodation over three floors including grand entrance hall, two reception rooms, study, luxury fitted kitchen/family room with bi-fold doors to garden, utility room, and guest cloakroom. First floor: master suite with dressing area and en-suite, three further bedrooms, and family bathroom. Second floor: fifth bedroom/games room and shower room. Features include underfloor heating, integrated sound system, landscaped gardens, double garage, and electric gates. Situated in a prestigious area near top-rated schools.",
+			"location":"Chatterton Road, Bromley BR2",
+			"picture":"images/prop9pic1small.jpg",
+			"url":"properties/prop9.html",
+            "added": {
+                "month":"January",
+                "day":2,
+                "year":2026
+            }
+        },
+		{
+            "id":"prop10",
+			"type":"Apartment",
+            "bedrooms":2,
+			"price":365000,
+			"tenure":"Leasehold",
+			"description":"Well-presented two bedroom apartment on the third floor of a popular development. This light and airy property comprises entrance hall, spacious lounge/dining room with laminate flooring, modern fitted kitchen, two double bedrooms with built-in wardrobes, and contemporary bathroom suite. The property benefits from double glazing, gas central heating, secure entry phone system, lift access, and allocated parking space. Communal gardens are well maintained. Conveniently located for Shortlands station, local shops, and schools. No onward chain.",
+			"location":"Glebe Way, Shortlands BR2",
+			"picture":"images/prop10pic1small.jpg",
+			"url":"properties/prop10.html",
+            "added": {
+                "month":"September",
+                "day":8,
+                "year":2025
+            }
+        }
+
+]}
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\main.jsx
+========================================
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './styles/index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\styles\App.css
+========================================
+
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\src\styles\index.css
+========================================
+
+body {
+  margin: 0;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Search Form Styles */
+.search-form {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.search-form select,
+.search-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.search-form select:focus,
+.search-form input[type="text"]:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.search-form input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* Property Results Styles */
+.property-results {
+  margin-top: 30px;
+}
+
+.results-header {
+  margin-bottom: 20px;
+}
+
+.results-header h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.results-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Property Grid Layout */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Property Card Link */
+.property-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Property Card Styles */
+.property-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.property-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #e5e7eb;
+}
+
+.property-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.property-type-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2563eb;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.property-details {
+  padding: 16px;
+}
+
+.property-price {
+  margin: 0 0 8px 0;
+  color: #2563eb;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.property-location {
+  margin: 0 0 12px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.property-info {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.info-item {
+  font-size: 13px;
+  color: #555;
+}
+
+.property-description {
+  margin: 0 0 12px 0;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.property-date {
+  margin: 0;
+  color: #999;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* No Results Styles */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 8px;
+}
+
+.no-results h3 {
+  margin: 0 0 10px 0;
+  color: #666;
+}
+
+.no-results p {
+  margin: 0;
+  color: #999;
+}
+
+/* Property Detail Page */
+.property-detail {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.detail-content {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: #e5e7eb;
+}
+
+.detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.detail-info {
+  padding: 30px;
+}
+
+.detail-price {
+  margin: 0 0 10px 0;
+  color: #2563eb;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.detail-location {
+  margin: 0 0 25px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.detail-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+}
+
+.feature {
+  font-size: 14px;
+  color: #555;
+}
+
+.feature strong {
+  color: #333;
+  margin-right: 5px;
+}
+
+.detail-description {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 25px;
+}
+
+.detail-description h2 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 22px;
+}
+
+.detail-description p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+
+========================================
+FILE: D:\Computer Science\CS - Lv 5\1- ACSD\CW2\Estate Agent Client-side Web App - AI\vite.config.js
+========================================
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})

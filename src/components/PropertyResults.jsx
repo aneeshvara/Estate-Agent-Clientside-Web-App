@@ -10,13 +10,24 @@ function PropertyResults({ properties, criteria }) {
     }
     
     // Check price range
-    if (property.price < criteria.minPrice || property.price > criteria.maxPrice) {
-      return false;
+    if (criteria.priceRange) {
+      if (criteria.priceRange === '1000000+') {
+        if (property.price < 1000000) return false;
+      } else {
+        const [min, max] = criteria.priceRange.split('-').map(Number);
+        if (property.price < min || property.price > max) return false;
+      }
     }
     
-    // Check bedroom range
-    if (property.bedrooms < criteria.minBedrooms || property.bedrooms > criteria.maxBedrooms) {
-      return false;
+    // Check bedrooms
+    if (criteria.bedrooms) {
+      const bedroomValue = criteria.bedrooms;
+      if (bedroomValue === '5') {
+        // 5+ bedrooms
+        if (property.bedrooms < 5) return false;
+      } else {
+        if (property.bedrooms !== parseInt(bedroomValue)) return false;
+      }
     }
     
     // Check postcode area

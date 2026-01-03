@@ -5,19 +5,15 @@ import '../styles/index.css';
 function SearchForm({ properties }) {
   // Form input states
   const [propertyType, setPropertyType] = useState('');
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000000);
-  const [minBedrooms, setMinBedrooms] = useState(1);
-  const [maxBedrooms, setMaxBedrooms] = useState(5);
+  const [priceRange, setPriceRange] = useState('');
+  const [bedrooms, setBedrooms] = useState('');
   const [postcodeArea, setPostcodeArea] = useState('');
 
   // Build search criteria object to pass to PropertyResults
   const searchCriteria = {
     propertyType,
-    minPrice,
-    maxPrice,
-    minBedrooms,
-    maxBedrooms,
+    priceRange,
+    bedrooms,
     postcodeArea
   };
 
@@ -37,57 +33,27 @@ function SearchForm({ properties }) {
         </div>
 
         <div className="form-group">
-          <label>Price Range: £{minPrice.toLocaleString()} - £{maxPrice.toLocaleString()}</label>
-          <div className="range-inputs">
-            <div>
-              <label>Min: </label>
-              <input
-                type="range"
-                min="0"
-                max="1000000"
-                step="50000"
-                value={minPrice}
-                onChange={(e) => setMinPrice(Number(e.target.value))}
-              />
-            </div>
-            <div>
-              <label>Max: </label>
-              <input
-                type="range"
-                min="0"
-                max="1000000"
-                step="50000"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(Number(e.target.value))}
-              />
-            </div>
-          </div>
+          <label>Price Range:</label>
+          <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
+            <option value="">Any Price</option>
+            <option value="0-250000">Under £250,000</option>
+            <option value="250000-500000">£250,000 - £500,000</option>
+            <option value="500000-750000">£500,000 - £750,000</option>
+            <option value="750000-1000000">£750,000 - £1,000,000</option>
+            <option value="1000000+">Over £1,000,000</option>
+          </select>
         </div>
 
         <div className="form-group">
           <label>Bedrooms:</label>
-          <div className="number-inputs">
-            <div>
-              <label>Min: </label>
-              <input
-                type="number"
-                min="1"
-                max="10"
-                value={minBedrooms}
-                onChange={(e) => setMinBedrooms(Number(e.target.value))}
-              />
-            </div>
-            <div>
-              <label>Max: </label>
-              <input
-                type="number"
-                min="1"
-                max="10"
-                value={maxBedrooms}
-                onChange={(e) => setMaxBedrooms(Number(e.target.value))}
-              />
-            </div>
-          </div>
+          <select value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}>
+            <option value="">Any</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5+</option>
+          </select>
         </div>
 
         <div className="form-group">
