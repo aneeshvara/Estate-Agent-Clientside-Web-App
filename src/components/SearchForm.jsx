@@ -3,24 +3,32 @@ import PropertyResults from './PropertyResults';
 import '../styles/index.css';
 
 function SearchForm({ properties }) {
-  // Form input states
   const [propertyType, setPropertyType] = useState('');
   const [priceRange, setPriceRange] = useState('');
   const [bedrooms, setBedrooms] = useState('');
   const [postcodeArea, setPostcodeArea] = useState('');
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
-  // Build search criteria object to pass to PropertyResults
   const searchCriteria = {
     propertyType,
     priceRange,
     bedrooms,
-    postcodeArea
+    postcodeArea,
+    showFavoritesOnly
   };
 
   return (
     <>
       <div className="search-form">
-        <h2>Search Properties</h2>
+        <div className="search-header">
+          <h2>Search Properties</h2>
+          <button 
+            className={`favorites-toggle ${showFavoritesOnly ? 'active' : ''}`}
+            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          >
+            ❤️ {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
+          </button>
+        </div>
         
         <div className="form-group">
           <label>Property Type:</label>

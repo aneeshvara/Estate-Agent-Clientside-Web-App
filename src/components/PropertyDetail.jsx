@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import propertiesData from '../data/properties.json';
 import '../styles/index.css';
@@ -8,6 +8,12 @@ function PropertyDetail() {
   const property = propertiesData.properties.find(p => p.id === id);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('description');
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    setIsFavorite(favorites.includes(id));
+  }, [id]);
 
   if (!property) {
     return <div>Property not found</div>;
@@ -17,9 +23,33 @@ function PropertyDetail() {
     setCurrentImageIndex(index);
   };
 
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    
+    if (favorites.includes(id)) {
+      const updated = favorites.filter(favId => favId !== id);
+      localStorage.setItem('favorites', JSON.stringify(updated));
+      setIsFavorite(false);
+    } else {
+      favorites.push(id);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      setIsFavorite(true);
+    }
+  };
+
   return (
     <div className="property-detail">
-      <Link to="/" className="back-link">← Back to Search</Link>
+      <div className="detail-header">
+        <Link to="/" className="back-link">← Back to Search</Link>
+        <button className="favorite-button-detail" onClick={toggleFavorite}>
+          <img 
+            src="/src/assets/heart.svg" 
+            alt="Favorite"
+            className={isFavorite ? 'heart-icon favorited' : 'heart-icon'}
+          />
+          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
+      </div>
       
       <div className="detail-content">
         <div className="detail-image-gallery">

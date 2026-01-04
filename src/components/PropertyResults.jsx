@@ -2,8 +2,7 @@ import PropertyCard from './PropertyCard';
 import '../styles/index.css';
 
 function PropertyResults({ properties, criteria }) {
-  // Filter properties based on search criteria passed from SearchForm
-  const filteredProperties = properties.filter(property => {
+  let filteredProperties = properties.filter(property => {
     // Check property type
     if (criteria.propertyType && property.type !== criteria.propertyType) {
       return false;
@@ -37,6 +36,13 @@ function PropertyResults({ properties, criteria }) {
     
     return true;
   });
+
+  if (criteria.showFavoritesOnly) {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    filteredProperties = filteredProperties.filter(property => 
+      favorites.includes(property.id)
+    );
+  }
 
   return (
     <div className="property-results">
