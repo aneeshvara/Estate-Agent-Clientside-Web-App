@@ -135,18 +135,15 @@ function PropertyDetail() {
 
               {activeTab === 'map' && (
                 <div className="tab-panel">
-                  <a 
-                    href={`https://www.google.com/maps/place/Regents+Quay,+6+Bowman+Ln,+Hunslet,+Leeds+LS10+1HF,+UK/@53.79327,-1.5359887,17z/data=!3m1!4b1!4m6!3m5!1s0x48795c17c0a94417:0x917b39ae2fbb583a!8m2!3d53.79327!4d-1.5359887!16s%2Fg%2F1v29bjm9?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img 
-                      // src={`/src/assets/${property.picture}/${property.mapImage}`}
-                      src={'/src/assets/map.jpg'}
-                      alt="Location Map"
-                      className="map-image"
-                    />
-                  </a>
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.7447363707985!2d-1.5381637!3d53.79327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c17c0a94417%3A0x917b39ae2fbb583a!2sRegents%20Quay%2C%206%20Bowman%20Ln%2C%20Hunslet%2C%20Leeds%20LS10%201HF%2C%20UK!5e0!3m2!1sen!2suk!4v1234567890"
+                    width="100%"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
                 </div>
               )}
             </div>
