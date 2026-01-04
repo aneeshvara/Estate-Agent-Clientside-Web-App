@@ -51,15 +51,13 @@ function PropertyCard({ property }) {
               />
             </button>
           </div>
-          <p className="property-location">📍 {property.location}</p>
+          <p className="property-location">📍 {property.location} </p>
           
           <div className="property-info">
             <span>🛏️ {property.bedrooms} Bedrooms</span>
             <span>📄 {property.tenure}</span>
           </div>
-          
-          <p className="property-description">{shortDescription}...</p>
-          
+                    
           <p className="property-date">
             Added: {property.added.month} {property.added.day}, {property.added.year}
           </p>

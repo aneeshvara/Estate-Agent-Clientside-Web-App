@@ -2,6 +2,7 @@ import PropertyCard from './PropertyCard';
 import '../styles/index.css';
 
 function PropertyResults({ properties, criteria }) {
+  // Filter properties based on search criteria passed from SearchForm
   let filteredProperties = properties.filter(property => {
     // Check property type
     if (criteria.propertyType && property.type !== criteria.propertyType) {

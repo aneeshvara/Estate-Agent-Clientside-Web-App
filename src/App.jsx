@@ -10,8 +10,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <h1>Property Search</h1>
-        
         <Routes>
           <Route path="/" element={<SearchForm properties={allProperties} />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
