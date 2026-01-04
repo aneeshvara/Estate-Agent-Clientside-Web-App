@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import '../styles/index.css';
 
 function PropertyCard({ property }) {
-  // Clean description: remove HTML tags and truncate
   const shortDescription = property.description.substring(0, 150).replace(/<[^>]*>/g, '');
 
   return (
@@ -10,9 +9,8 @@ function PropertyCard({ property }) {
       <div className="property-card">
         <div className="property-image">
           <img 
-            src={property.picture} 
+            src={`/src/assets/${property.picture}/${property.images[0]}`}
             alt={property.type}
-            onError={(e) => e.target.src = 'https://via.placeholder.com/300x200?text=Property'}
           />
           <span className="property-type-badge">{property.type}</span>
         </div>

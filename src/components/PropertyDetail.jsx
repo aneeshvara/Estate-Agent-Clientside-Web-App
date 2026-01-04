@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import propertiesData from '../data/properties.json';
 import '../styles/index.css';
@@ -5,28 +6,44 @@ import '../styles/index.css';
 function PropertyDetail() {
   const { id } = useParams();
   const property = propertiesData.properties.find(p => p.id === id);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!property) {
-    return (
-      <div className="property-detail">
-        <h2>Property not found</h2>
-        <Link to="/">Back to Search</Link>
-      </div>
-    );
+    return <div>Property not found</div>;
   }
+
+  const handleThumbnailClick = (index) => {
+    setCurrentImageIndex(index);
+  };
 
   return (
     <div className="property-detail">
       <Link to="/" className="back-link">← Back to Search</Link>
       
       <div className="detail-content">
-        <div className="detail-image">
-          <img 
-            src={`/${property.picture}`} 
-            alt={property.type}
-            onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Property'}
-          />
-          <span className="detail-badge">{property.type}</span>
+        <div className="detail-image-gallery">
+          <div className="main-image">
+            <img 
+              src={`/src/assets/${property.picture}/${property.images[currentImageIndex]}`}
+              alt={property.type}
+            />
+            <span className="detail-badge">{property.type}</span>
+          </div>
+          
+          <div className="thumbnail-strip">
+            {property.images.map((image, index) => (
+              <div
+                key={index}
+                className={`thumbnail ${index === currentImageIndex ? 'active' : ''}`}
+                onClick={() => handleThumbnailClick(index)}
+              >
+                <img 
+                  src={`/src/assets/${property.picture}/${image}`}
+                  alt={`Thumbnail ${index + 1}`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="detail-info">
