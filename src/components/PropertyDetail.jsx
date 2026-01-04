@@ -43,7 +43,7 @@ function PropertyDetail() {
         <Link to="/" className="back-link">← Back to Search</Link>
         <button className="favorite-button-detail" onClick={toggleFavorite}>
           <img 
-            src="/src/assets/heart.svg" 
+            src="/heart.svg" 
             alt="Favorite"
             className={isFavorite ? 'heart-icon favorited' : 'heart-icon'}
           />
@@ -55,7 +55,7 @@ function PropertyDetail() {
         <div className="detail-image-gallery">
           <div className="main-image">
             <img 
-              src={`/src/assets/${property.picture}/${property.images[currentImageIndex]}`}
+              src={`/${property.picture}/${property.images[currentImageIndex]}`}
               alt={property.type}
             />
             <span className="detail-badge">{property.type}</span>
@@ -69,7 +69,7 @@ function PropertyDetail() {
                 onClick={() => handleThumbnailClick(index)}
               >
                 <img 
-                  src={`/src/assets/${property.picture}/${image}`}
+                  src={`/${property.picture}/${image}`}
                   alt={`Thumbnail ${index + 1}`}
                 />
               </div>
@@ -125,8 +125,8 @@ function PropertyDetail() {
               {activeTab === 'floorplan' && (
                 <div className="tab-panel">
                   <img 
-                    // src={`/src/assets/${property.picture}/${property.floorplan}`}
-                    src={'/src/assets/floorplan.jpg'}
+                    // src={`/${property.picture}/${property.floorplan}`}
+                    src={'/floorplan.jpg'}
                     alt="Floor Plan"
                     className="floorplan-image"
                   />

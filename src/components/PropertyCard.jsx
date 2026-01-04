@@ -31,7 +31,7 @@ function PropertyCard({ property }) {
       <div className="property-card">
         <div className="property-image">
           <img 
-            src={`/src/assets/${property.picture}/${property.images[0]}`}
+            src={`/${property.picture}/${property.images[0]}`}
             alt={property.type}
           />
           <span className="property-type-badge">{property.type}</span>
@@ -45,17 +45,19 @@ function PropertyCard({ property }) {
               onClick={toggleFavorite}
             >
               <img 
-                src="/src/assets/heart.svg" 
+                src="/heart.svg" 
                 alt="Favorite"
                 className={isFavorite ? 'heart-icon favorited' : 'heart-icon'}
               />
             </button>
           </div>
-          <p className="property-location">📍 {property.location} </p>
           
           <div className="property-info">
-            <span>🛏️ {property.bedrooms} Bedrooms</span>
-            <span>📄 {property.tenure}</span>
+            <span>{property.location}</span>
+            <span>
+              <img src="/bedroom.svg" alt="" className="info-icon" />
+              {property.bedrooms} Bedrooms
+            </span>
           </div>
                     
           <p className="property-date">
