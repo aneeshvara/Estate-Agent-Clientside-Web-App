@@ -33,7 +33,7 @@ function SearchForm({ properties }) {
               className={`favorites-toggle ${showFavoritesOnly ? 'active' : ''}`}
               onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
             >
-              ❤️ {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
+              {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
             </button>
           </div>
           

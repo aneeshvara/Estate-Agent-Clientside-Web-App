@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #e63946; /* Nice red, not too saturated */
+  --primary: #e63946; 
   --primary-dark: #c1121f;
-  --secondary: #1d3557; /* Dark blue for contrast */
+  --secondary: #1d3557; 
   --background: #ffffff;
   --surface: #ffffff;
   --text-main: #333333;
@@ -58,7 +58,7 @@ body {
   border-radius: var(--radius);
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   max-width: 1000px;
-  margin: -60px auto 60px; /* Negative top margin for overlap */
+  margin: -60px auto 60px; 
   position: relative;
   z-index: 10;
 }
@@ -121,7 +121,7 @@ body {
 .property-results {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px; /* Increased top padding */
+  padding: 40px 20px; 
 }
 
 .results-header {

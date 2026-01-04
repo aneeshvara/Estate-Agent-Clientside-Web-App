@@ -2,14 +2,16 @@ import PropertyCard from './PropertyCard';
 import '../styles/index.css';
 
 function PropertyResults({ properties, criteria }) {
-  // Filter properties based on search criteria passed from SearchForm
+
+  // Filtering properties
   let filteredProperties = properties.filter(property => {
-    // Check property type
+
+    // Type
     if (criteria.propertyType && property.type !== criteria.propertyType) {
       return false;
     }
     
-    // Check price range
+    // Price
     if (criteria.priceRange) {
       if (criteria.priceRange === '1000000+') {
         if (property.price < 1000000) return false;
@@ -19,18 +21,17 @@ function PropertyResults({ properties, criteria }) {
       }
     }
     
-    // Check bedrooms
+    // Bedrooms
     if (criteria.bedrooms) {
       const bedroomValue = criteria.bedrooms;
       if (bedroomValue === '5') {
-        // 5+ bedrooms
         if (property.bedrooms < 5) return false;
       } else {
         if (property.bedrooms !== parseInt(bedroomValue)) return false;
       }
     }
     
-    // Check postcode area
+    // Postal Code
     if (criteria.postcodeArea && !property.location.toLowerCase().includes(criteria.postcodeArea.toLowerCase())) {
       return false;
     }
