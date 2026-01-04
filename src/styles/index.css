@@ -348,3 +348,60 @@ h1 {
   line-height: 1.7;
   margin: 0;
 }
+/* Tabs */
+.tabs-container {
+  margin-top: 30px;
+}
+
+.tabs-header {
+  display: flex;
+  gap: 5px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 15px;
+  color: #666;
+}
+
+.tab-button:hover {
+  color: #2563eb;
+}
+
+.tab-button.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+  font-weight: 600;
+}
+
+.tabs-content {
+  padding: 20px 0;
+}
+
+.tab-panel p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.floorplan-image {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e5e7eb;
+}
+
+.map-image {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.map-image:hover {
+  opacity: 0.9;
+}

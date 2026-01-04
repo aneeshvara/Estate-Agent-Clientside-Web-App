@@ -10,6 +10,8 @@
 			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
 			"picture":"prop1",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop1.html",
             "added": {
                 "month":"October",
@@ -27,6 +29,8 @@
 			"location":"Crofton Road Orpington BR6",
 			"picture":"prop2",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",
@@ -44,6 +48,8 @@
 			"location":"High Street, Bromley BR1",
 			"picture":"prop3",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop3.html",
             "added": {
                 "month":"November",
@@ -61,6 +67,8 @@
 			"location":"Hayes Lane, Bromley BR2",
 			"picture":"prop4",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop4.html",
             "added": {
                 "month":"December",
@@ -78,6 +86,8 @@
 			"location":"Manor Park Road, Chislehurst BR7",
 			"picture":"prop5",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop5.html",
             "added": {
                 "month":"October",
@@ -95,6 +105,8 @@
 			"location":"Station Approach, West Wickham BR4",
 			"picture":"prop6",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop6.html",
             "added": {
                 "month":"August",
@@ -112,6 +124,8 @@
 			"location":"Alexandra Road, Penge SE20",
 			"picture":"prop7",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop7.html",
             "added": {
                 "month":"December",
@@ -129,6 +143,8 @@
 			"location":"Riverside Gardens, Bickley BR1",
 			"picture":"prop8",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop8.html",
             "added": {
                 "month":"November",
@@ -146,6 +162,8 @@
 			"location":"Chatterton Road, Bromley BR2",
 			"picture":"prop9",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop9.html",
             "added": {
                 "month":"January",
@@ -163,6 +181,8 @@
 			"location":"Glebe Way, Shortlands BR2",
 			"picture":"prop10",
 			"images":["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"],
+			"floorplan":"floorplan.jpg",
+			"mapImage":"map.jpg",
 			"url":"properties/prop10.html",
             "added": {
                 "month":"September",
