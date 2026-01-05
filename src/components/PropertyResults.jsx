@@ -36,8 +36,22 @@ function PropertyResults({ properties, criteria }) {
       return false;
     }
     
+    // Date Added
+    if (criteria.dateAdded) {
+      const propertyDate = new Date(property.added.year, getMonthIndex(property.added.month), property.added.day);
+      const filterDate = new Date(criteria.dateAdded);
+      if (propertyDate < filterDate) return false;
+    }
+    
     return true;
   });
+
+  // Helper function to convert month name to index
+  function getMonthIndex(monthName) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                   'July', 'August', 'September', 'October', 'November', 'December'];
+    return months.indexOf(monthName);
+  }
 
   if (criteria.showFavoritesOnly) {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');

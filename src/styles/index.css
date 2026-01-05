@@ -56,11 +56,12 @@ body {
   background: var(--surface);
   padding: 30px;
   border-radius: var(--radius);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   max-width: 1000px;
   margin: -60px auto 60px; 
   position: relative;
   z-index: 10;
+  border-top: 5px solid var(--primary);
 }
 
 .search-header {
@@ -78,43 +79,47 @@ body {
   font-size: 1.5rem;
 }
 
-.search-grid {
+.search-grid-row-1 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  margin-bottom: 20px;
+}
+
+.search-grid-row-2 {
+  display: block;
 }
 
 .form-group {
   margin-bottom: 0;
 }
 
-.form-group label {
-  display: block;
-  color: var(--text-light);
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.form-group-slider {
+  margin-bottom: 0;
 }
 
-.search-form select,
-.search-form input[type="text"] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 1rem;
-  background-color: #f9fafb;
-  box-sizing: border-box;
-  transition: border-color 0.2s;
-}
+/* Removed conflicting legacy form styles to allow MUI components to render correctly */
 
-.search-form select:focus,
-.search-form input[type="text"]:focus {
-  outline: none;
-  border-color: var(--primary);
+/* MUI Component Styling */
+.form-group .MuiFormControl-root,
+.form-group .MuiTextField-root {
   background-color: white;
+  border-radius: var(--radius);
+}
+
+.form-group .MuiOutlinedInput-root {
+  border-radius: var(--radius);
+}
+
+.form-group .MuiSlider-root {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .search-grid-row-1 {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
 }
 
 /* Property Results Styles */
@@ -173,6 +178,7 @@ body {
   height: 220px;
   overflow: hidden;
   background-color: #e5e7eb;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .property-image img {

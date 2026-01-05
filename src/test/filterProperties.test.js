@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { filterProperties } from '../utils/filterProperties';
 
-// Mock property data for testing
+// Dummy data
 const mockProperties = [
   {
     id: 'prop1',

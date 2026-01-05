@@ -3,14 +3,15 @@ import { useState, useEffect } from 'react';
 import '../styles/index.css';
 
 function PropertyCard({ property }) {
-  const shortDescription = property.description.substring(0, 150).replace(/<[^>]*>/g, '');
   const [isFavorite, setIsFavorite] = useState(false);
 
+  // Load favorite status from localStorage on mount
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     setIsFavorite(favorites.includes(property.id));
   }, [property.id]);
 
+  // Toggle favorite status and update localStorage
   const toggleFavorite = (e) => {
     e.preventDefault();
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');

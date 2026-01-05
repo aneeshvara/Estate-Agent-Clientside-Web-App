@@ -1,20 +1,47 @@
 import { useState } from 'react';
 import PropertyResults from './PropertyResults';
+import { TextField, Select, MenuItem, FormControl, InputLabel, Slider, Box, Typography } from '@mui/material';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 import '../styles/index.css';
 
 function SearchForm({ properties }) {
+  // Search filter states
   const [propertyType, setPropertyType] = useState('');
-  const [priceRange, setPriceRange] = useState('');
+  const [priceRange, setPriceRange] = useState([0, 1500000]); // Slider uses array [min, max]
   const [bedrooms, setBedrooms] = useState('');
   const [postcodeArea, setPostcodeArea] = useState('');
+  const [dateAdded, setDateAdded] = useState(null);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
+  // Convert slider values to price range string for filtering
+  const getPriceRangeString = () => {
+    if (priceRange[0] === 0 && priceRange[1] === 1500000) return '';
+    if (priceRange[1] === 1500000) return `${priceRange[0]}+`;
+    return `${priceRange[0]}-${priceRange[1]}`;
+  };
+
+  // Combine all search criteria
   const searchCriteria = {
     propertyType,
-    priceRange,
+    priceRange: getPriceRangeString(),
     bedrooms,
     postcodeArea,
+    dateAdded: dateAdded ? dayjs(dateAdded).format('YYYY-MM-DD') : null,
     showFavoritesOnly
+  };
+
+  // Common styles for MUI inputs to ensure consistency
+  const commonInputStyles = {
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#e63946',
+      },
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+      color: '#e63946',
+    },
   };
 
   return (
@@ -28,57 +55,101 @@ function SearchForm({ properties }) {
       
       <div className="search-form">
         <div className="search-header">
-            <h2>Search Properties</h2>
-            <button 
-              className={`favorites-toggle ${showFavoritesOnly ? 'active' : ''}`}
-              onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-            >
-              {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
-            </button>
-          </div>
+          <h2>Search Properties</h2>
+          <button 
+            className={`favorites-toggle ${showFavoritesOnly ? 'active' : ''}`}
+            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          >
+            {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
+          </button>
+        </div>
           
-          <div className="search-grid">
+          <div className="search-grid-row-1">
             <div className="form-group">
-              <label>Property Type</label>
-              <select value={propertyType} onChange={(e) => setPropertyType(e.target.value)}>
-                <option value="">All Types</option>
-                <option value="House">House</option>
-                <option value="Flat">Flat</option>
-                <option value="Bungalow">Bungalow</option>
-              </select>
+              <FormControl fullWidth size="small" sx={commonInputStyles}>
+                <InputLabel>Property Type</InputLabel>
+                <Select 
+                  value={propertyType} 
+                  onChange={(e) => setPropertyType(e.target.value)}
+                  label="Property Type"
+                >
+                  <MenuItem value="">All Types</MenuItem>
+                  <MenuItem value="House">House</MenuItem>
+                  <MenuItem value="Flat">Flat</MenuItem>
+                  <MenuItem value="Bungalow">Bungalow</MenuItem>
+                </Select>
+              </FormControl>
             </div>
 
             <div className="form-group">
-              <label>Price Range</label>
-              <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
-                <option value="">Any Price</option>
-                <option value="0-250000">Under £250,000</option>
-                <option value="250000-500000">£250,000 - £500,000</option>
-                <option value="500000-750000">£500,000 - £750,000</option>
-                <option value="750000-1000000">£750,000 - £1,000,000</option>
-                <option value="1000000+">Over £1,000,000</option>
-              </select>
+              <FormControl fullWidth size="small" sx={commonInputStyles}>
+                <InputLabel>Bedrooms</InputLabel>
+                <Select 
+                  value={bedrooms} 
+                  onChange={(e) => setBedrooms(e.target.value)}
+                  label="Bedrooms"
+                >
+                  <MenuItem value="">Any</MenuItem>
+                  <MenuItem value="1">1</MenuItem>
+                  <MenuItem value="2">2</MenuItem>
+                  <MenuItem value="3">3</MenuItem>
+                  <MenuItem value="4">4</MenuItem>
+                  <MenuItem value="5">5+</MenuItem>
+                </Select>
+              </FormControl>
             </div>
 
             <div className="form-group">
-              <label>Bedrooms</label>
-              <select value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}>
-                <option value="">Any</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5+</option>
-              </select>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Date Added (After)"
+                  value={dateAdded}
+                  onChange={(newValue) => setDateAdded(newValue)}
+                  slotProps={{ 
+                    textField: { 
+                      size: 'small', 
+                      fullWidth: true,
+                      placeholder: 'Filter by date'
+                    } 
+                  }}
+                  sx={commonInputStyles}
+                />
+              </LocalizationProvider>
             </div>
 
             <div className="form-group">
-              <label>Postcode Area</label>
-              <input
-                type="text"
-                placeholder="e.g., BR5, BR6"
+              <TextField
+                label="Postcode Area"
                 value={postcodeArea}
                 onChange={(e) => setPostcodeArea(e.target.value)}
+                size="small"
+                fullWidth
+                sx={commonInputStyles}
+              />
+            </div>
+          </div>
+
+          <div className="search-grid-row-2">
+            <div className="form-group form-group-slider">
+              <Typography gutterBottom sx={{ fontSize: '0.875rem', color: '#666', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Price Range: £{priceRange[0].toLocaleString()} - £{priceRange[1].toLocaleString()}
+              </Typography>
+              <Slider
+                value={priceRange}
+                onChange={(e, newValue) => setPriceRange(newValue)}
+                min={0}
+                max={1500000}
+                step={50000}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) => `£${value.toLocaleString()}`}
+                sx={{ 
+                  color: '#e63946',
+                  '& .MuiSlider-thumb': {
+                    '&:hover, &.Mui-focusVisible': {
+                      boxShadow: '0 0 0 8px rgba(230, 57, 70, 0.16)',
+                    },
+                  },
+                }}
               />
             </div>
           </div>

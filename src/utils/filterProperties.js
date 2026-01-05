@@ -1,6 +1,7 @@
 // Filter properties based on search criteria
 export function filterProperties(properties, criteria) {
   return properties.filter(property => {
+    
     // Check property type
     if (criteria.propertyType && property.type !== criteria.propertyType) {
       return false;
@@ -20,14 +21,13 @@ export function filterProperties(properties, criteria) {
     if (criteria.bedrooms) {
       const bedroomValue = criteria.bedrooms;
       if (bedroomValue === '5') {
-        // 5+ bedrooms
         if (property.bedrooms < 5) return false;
       } else {
         if (property.bedrooms !== parseInt(bedroomValue)) return false;
       }
     }
     
-    // Check postcode area
+    // Check Postal Code
     if (criteria.postcodeArea && !property.location.toLowerCase().includes(criteria.postcodeArea.toLowerCase())) {
       return false;
     }
