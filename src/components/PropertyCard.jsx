@@ -1,30 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { isFavorite as checkFavorite, toggleFavorite as toggleFav } from '../functions/favorites';
 import '../styles/index.css';
 
 function PropertyCard({ property }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Load favorite status from localStorage on mount
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    setIsFavorite(favorites.includes(property.id));
+    setIsFavorite(checkFavorite(property.id));
   }, [property.id]);
 
-  // Toggle favorite status and update localStorage
-  const toggleFavorite = (e) => {
+  const handleToggleFavorite = (e) => {
     e.preventDefault();
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    
-    if (favorites.includes(property.id)) {
-      const updated = favorites.filter(id => id !== property.id);
-      localStorage.setItem('favorites', JSON.stringify(updated));
-      setIsFavorite(false);
-    } else {
-      favorites.push(property.id);
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
+    toggleFav(property.id);
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -43,7 +32,7 @@ function PropertyCard({ property }) {
             <h3 className="property-price">£{property.price.toLocaleString()}</h3>
             <button 
               className="favorite-button"
-              onClick={toggleFavorite}
+              onClick={handleToggleFavorite}
             >
               <img 
                 src="/heart.svg" 

@@ -111,8 +111,31 @@ body {
   border-radius: var(--radius);
 }
 
+/* Focus states for MUI inputs */
+.form-group .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #e63946;
+}
+
+.form-group .MuiInputLabel-root.Mui-focused {
+  color: #e63946;
+}
+
 .form-group .MuiSlider-root {
   margin-top: 10px;
+  color: #e63946;
+}
+
+.form-group .MuiSlider-thumb:hover,
+.form-group .MuiSlider-thumb.Mui-focusVisible {
+  box-shadow: 0 0 0 8px rgba(230, 57, 70, 0.16);
+}
+
+.slider-label {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { isFavorite as checkFavorite, toggleFavorite as toggleFav } from '../functions/favorites';
 import propertiesData from '../data/properties.json';
 import '../styles/index.css';
 
@@ -10,51 +11,40 @@ function PropertyDetail() {
   const [activeTab, setActiveTab] = useState('description');
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Load favorite status from localStorage
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    setIsFavorite(favorites.includes(id));
+    setIsFavorite(checkFavorite(id));
   }, [id]);
 
   if (!property) {
     return <div>Property not found</div>;
   }
 
-  // Switch to selected image in gallery
   const handleThumbnailClick = (index) => {
     setCurrentImageIndex(index);
   };
 
-  // Toggle favorite status and update localStorage
-  const toggleFavorite = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    
-    if (favorites.includes(id)) {
-      const updated = favorites.filter(favId => favId !== id);
-      localStorage.setItem('favorites', JSON.stringify(updated));
-      setIsFavorite(false);
-    } else {
-      favorites.push(id);
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
+  const handleToggleFavorite = () => {
+    toggleFav(id);
+    setIsFavorite(!isFavorite);
   };
 
   return (
     <div className="property-detail">
-      <div className="detail-header">
-        <Link to="/" className="back-link">← Back to Search</Link>
-        <button className="favorite-button-detail" onClick={toggleFavorite}>
+      <Link to="/" className="back-link">← Back to Search</Link>
+      
+      <div className="detail-content">
+        <div className="detail-header">
+          <h1 className="detail-price">£{property.price.toLocaleString()}</h1>
+          <button className="favorite-button-detail" onClick={handleToggleFavorite}>
           <img 
             src="/heart.svg" 
             alt="Favorite"
             className={isFavorite ? 'heart-icon favorited' : 'heart-icon'}
           />
-          {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-        </button>
-      </div>
-      
-      <div className="detail-content">
+            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+          </button>
+        </div>
+        
         <div className="detail-image-gallery">
           <div className="main-image">
             <img 
@@ -81,7 +71,6 @@ function PropertyDetail() {
         </div>
 
         <div className="detail-info">
-          <h1 className="detail-price">£{property.price.toLocaleString()}</h1>
           <p className="detail-location">📍 {property.location}</p>
 
           <div className="detail-features">
@@ -121,7 +110,9 @@ function PropertyDetail() {
             <div className="tabs-content">
               {activeTab === 'description' && (
                 <div className="tab-panel">
-                  <p dangerouslySetInnerHTML={{ __html: property.description.replace(/<br>/g, '<br/><br/>') }}></p>
+                  {property.description.split('<br>').map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
                 </div>
               )}
 

@@ -8,13 +8,9 @@ export function filterProperties(properties, criteria) {
     }
     
     // Check price range
-    if (criteria.priceRange) {
-      if (criteria.priceRange === '1000000+') {
-        if (property.price < 1000000) return false;
-      } else {
-        const [min, max] = criteria.priceRange.split('-').map(Number);
-        if (property.price < min || property.price > max) return false;
-      }
+    if (criteria.priceRange && Array.isArray(criteria.priceRange)) {
+      const [min, max] = criteria.priceRange;
+      if (property.price < min || property.price > max) return false;
     }
     
     // Check bedrooms
@@ -30,6 +26,15 @@ export function filterProperties(properties, criteria) {
     // Check Postal Code
     if (criteria.postcodeArea && !property.location.toLowerCase().includes(criteria.postcodeArea.toLowerCase())) {
       return false;
+    }
+    
+    // Check Date Added
+    if (criteria.dateAdded) {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                     'July', 'August', 'September', 'October', 'November', 'December'];
+      const propertyDate = new Date(property.added.year, months.indexOf(property.added.month), property.added.day);
+      const filterDate = new Date(criteria.dateAdded);
+      if (propertyDate < filterDate) return false;
     }
     
     return true;

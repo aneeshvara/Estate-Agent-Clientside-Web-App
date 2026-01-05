@@ -40,7 +40,7 @@
         },
 		{
             "id":"prop3",
-			"type":"Apartment",
+			"type":"Bungalow",
             "bedrooms":1,
 			"price":285000,
 			"tenure":"Leasehold",
@@ -116,7 +116,7 @@
         },
 		{
             "id":"prop7",
-			"type":"House",
+			"type":"Bungalow",
             "bedrooms":2,
 			"price":475000,
 			"tenure":"Freehold",
