@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import '../styles/index.css';
 
 function SearchForm({ properties }) {
-  
+
   // Search filter states
   const [propertyType, setPropertyType] = useState('');
   const [priceRange, setPriceRange] = useState([0, 1500000]);
@@ -16,6 +16,7 @@ function SearchForm({ properties }) {
   const [dateAdded, setDateAdded] = useState(null);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
+  // Combine all search criteria
   const searchCriteria = {
     propertyType,
     priceRange,

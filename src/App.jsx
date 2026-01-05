@@ -4,6 +4,7 @@ import SearchForm from './components/SearchForm';
 import PropertyDetail from './components/PropertyDetail';
 
 function App() {
+  // Load all properties from JSON data
   const allProperties = propertiesData.properties;
 
   return (

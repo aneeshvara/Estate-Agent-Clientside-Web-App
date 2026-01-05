@@ -6,11 +6,17 @@ import '../styles/index.css';
 function PropertyCard({ property }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
+  // Load favorite status from localStorage on mount
   useEffect(() => {
     setIsFavorite(checkFavorite(property.id));
   }, [property.id]);
 
+
   const handleToggleFavorite = (e) => {
+
+  // Toggle favorite status and update localStorage
+  const toggleFavorite = (e) => {
+
     e.preventDefault();
     toggleFav(property.id);
     setIsFavorite(!isFavorite);
