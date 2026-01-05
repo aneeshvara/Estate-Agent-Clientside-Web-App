@@ -3,12 +3,14 @@ import PropertyResults from './PropertyResults';
 import '../styles/index.css';
 
 function SearchForm({ properties }) {
+  // Search filter states
   const [propertyType, setPropertyType] = useState('');
   const [priceRange, setPriceRange] = useState('');
   const [bedrooms, setBedrooms] = useState('');
   const [postcodeArea, setPostcodeArea] = useState('');
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
+  // Combine all search criteria
   const searchCriteria = {
     propertyType,
     priceRange,

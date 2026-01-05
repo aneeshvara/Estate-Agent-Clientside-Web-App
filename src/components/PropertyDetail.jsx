@@ -10,6 +10,7 @@ function PropertyDetail() {
   const [activeTab, setActiveTab] = useState('description');
   const [isFavorite, setIsFavorite] = useState(false);
 
+  // Load favorite status from localStorage
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     setIsFavorite(favorites.includes(id));
@@ -19,10 +20,12 @@ function PropertyDetail() {
     return <div>Property not found</div>;
   }
 
+  // Switch to selected image in gallery
   const handleThumbnailClick = (index) => {
     setCurrentImageIndex(index);
   };
 
+  // Toggle favorite status and update localStorage
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     

@@ -21,7 +21,7 @@ export function removeFromFavorites(propertyId) {
   return updated;
 }
 
-// Check if property is favorited
+// Check if property is a favourite
 export function isFavorite(propertyId) {
   const favorites = getFavorites();
   return favorites.includes(propertyId);
