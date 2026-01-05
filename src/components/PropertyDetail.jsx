@@ -28,21 +28,6 @@ function PropertyDetail() {
   const handleToggleFavorite = () => {
     toggleFav(id);
     setIsFavorite(!isFavorite);
-
-  // Toggle favorite status and update localStorage
-  const toggleFavorite = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    
-    if (favorites.includes(id)) {
-      const updated = favorites.filter(favId => favId !== id);
-      localStorage.setItem('favorites', JSON.stringify(updated));
-      setIsFavorite(false);
-    } else {
-      favorites.push(id);
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
-
   };
 
   return (

@@ -11,12 +11,7 @@ function PropertyCard({ property }) {
     setIsFavorite(checkFavorite(property.id));
   }, [property.id]);
 
-
   const handleToggleFavorite = (e) => {
-
-  // Toggle favorite status and update localStorage
-  const toggleFavorite = (e) => {
-
     e.preventDefault();
     toggleFav(property.id);
     setIsFavorite(!isFavorite);
