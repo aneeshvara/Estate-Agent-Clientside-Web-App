@@ -38,11 +38,11 @@ function PropertyDetail() {
         <div className="detail-header">
           <h1 className="detail-price">£{property.price.toLocaleString()}</h1>
           <button className="favorite-button-detail" onClick={handleToggleFavorite}>
-          <img 
-            src="/heart.svg" 
-            alt="Favorite"
-            className={isFavorite ? 'heart-icon favorited' : 'heart-icon'}
-          />
+            <img 
+              src="/heart.svg" 
+              alt="Favorite"
+              className={isFavorite ? 'heart-icon favorited' : 'heart-icon'}
+            />
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
           </button>
         </div>
